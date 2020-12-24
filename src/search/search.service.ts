@@ -2,18 +2,21 @@ import {Injectable} from '@nestjs/common';
 import {ElasticsearchService} from '@nestjs/elasticsearch';
 import * as Relay from 'graphql-relay';
 import {RequiredPaginationArgs} from '../paginate/dto/required-pagination.argstype';
-import {getMeta, getPagingParameters} from '../paginate/paginate';
+import {PaginateService} from '../paginate/paginate.service';
 
 @Injectable()
 export class SearchService {
-  constructor(private readonly elasticsearchService: ElasticsearchService) {}
+  constructor(
+    private readonly elasticsearchService: ElasticsearchService,
+    private readonly paginateService: PaginateService,
+  ) {}
 
   async paginatedSearch(
     index: string | string[],
     query: any,
     connArgs: RequiredPaginationArgs,
   ) {
-    const {size, from} = getPagingParameters(getMeta(connArgs));
+    const {size, from} = this.paginateService.getPagingParameters(connArgs);
 
     const {
       body: {
