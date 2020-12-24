@@ -2,9 +2,11 @@ import {Module} from '@nestjs/common';
 import {ConfigModule} from '@nestjs/config';
 import {ElasticsearchModule} from '@nestjs/elasticsearch';
 import {GraphQLFederationModule} from '@nestjs/graphql';
+import {AuthorsModule} from './authors/authors.module';
 import {BooksModule} from './books/books.module';
 import {ElasticsearchOptionsService} from './elasticsearch/elasticsearch-options.service';
 import elasticsearchConfig from './elasticsearch/elasticsearch.config';
+import {SeriesModule} from './series/series.module';
 
 @Module({
   imports: [
@@ -16,6 +18,8 @@ import elasticsearchConfig from './elasticsearch/elasticsearch.config';
       useClass: ElasticsearchOptionsService,
     }),
     BooksModule,
+    AuthorsModule,
+    SeriesModule,
   ],
 })
 export class AppModule {}
