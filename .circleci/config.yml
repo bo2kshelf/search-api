@@ -126,9 +126,6 @@ workflows:
       - docker/hadolint:
           dockerfiles: Dockerfile
       - ts-check
-      - check-sdl:
-          requires:
-            - ts-check
       - test-small:
           requires:
             - ts-check
@@ -140,6 +137,5 @@ workflows:
             - lint-eslint
             - lint-prettier
             - ts-check
-            - check-sdl
             - test-small
             - test-medium
