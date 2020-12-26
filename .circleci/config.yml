@@ -52,16 +52,6 @@ jobs:
           pkg-manager: yarn
       - run: yarn run ts-check
 
-  check-sdl:
-    docker:
-      - image: circleci/node:14.15.3
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: yarn
-      - run: yarn run generate-sdl
-      - run: test -z "$(git status schema.graphqls -s)"; exit $?
-
   test-small:
     docker:
       - image: circleci/node:14.15.3
