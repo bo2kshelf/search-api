@@ -1,15 +1,35 @@
-import {Injectable} from '@nestjs/common';
+import {Inject, Injectable} from '@nestjs/common';
+import {ConfigType} from '@nestjs/config';
 import {ElasticsearchService} from '@nestjs/elasticsearch';
 import * as Relay from 'graphql-relay';
+import {Author} from '../authors/entity/authors.entity';
+import {Book} from '../books/entity/book.entity';
+import elasticsearchConfig from '../elasticsearch/elasticsearch.config';
 import {RequiredPaginationArgs} from '../paginate/dto/required-pagination.argstype';
 import {PaginateService} from '../paginate/paginate.service';
+import {Series} from '../series/entity/series.entity';
 
 @Injectable()
 export class SearchService {
   constructor(
     private readonly elasticsearchService: ElasticsearchService,
     private readonly paginateService: PaginateService,
+    @Inject(elasticsearchConfig.KEY)
+    private configService: ConfigType<typeof elasticsearchConfig>,
   ) {}
+
+  getTypeFromIndex(index: string) {
+    switch (index) {
+      case this.configService.booksIndex:
+        return Book.name;
+      case this.configService.authorsIndex:
+        return Author.name;
+      case this.configService.seriesIndex:
+        return Series.name;
+      default:
+        return null;
+    }
+  }
 
   async paginatedSearch(
     index: string | string[],
@@ -33,8 +53,15 @@ export class SearchService {
       body: {query},
     });
 
-    const connection = Relay.connectionFromArraySlice<{_id: string}>(
-      hits,
+    const connection = Relay.connectionFromArraySlice<{
+      _id: string;
+      _union: string | null;
+    }>(
+      hits.map(({_index, ...rest}: {_index: string}) => ({
+        _index,
+        _union: this.getTypeFromIndex(_index),
+        ...rest,
+      })),
       connArgs,
       {arrayLength: count, sliceStart: from || 0},
     );
