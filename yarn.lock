@@ -75,6 +75,25 @@
     core-js "^3.4.0"
     lodash.xorby "^4.7.0"
 
+"@apollo/gateway@0.21.4":
+  version "0.21.4"
+  resolved "https://registry.yarnpkg.com/@apollo/gateway/-/gateway-0.21.4.tgz#8dcec7d94e89ee13a52571d16d477d4869ccc4b2"
+  integrity sha512-e8NpehH+0pQYr2wYeqRyB9i7WaTzWJw16hoI3xVJK1r4DVoSzXqjPyPv00MIBjaCHhq2vlwIe+mupjHC/aMF0g==
+  dependencies:
+    "@apollo/federation" "^0.20.7"
+    "@apollo/query-planner-wasm" "^0.0.9"
+    "@types/node-fetch" "2.5.4"
+    apollo-graphql "^0.6.0"
+    apollo-reporting-protobuf "^0.6.0"
+    apollo-server-caching "^0.5.2"
+    apollo-server-core "^2.19.0"
+    apollo-server-env "^2.4.5"
+    apollo-server-errors "^2.4.2"
+    apollo-server-types "^0.6.1"
+    loglevel "^1.6.1"
+    make-fetch-happen "^8.0.0"
+    pretty-format "^26.0.0"
+
 "@apollo/gateway@^0.17.0":
   version "0.17.0"
   resolved "https://registry.yarnpkg.com/@apollo/gateway/-/gateway-0.17.0.tgz#beeddd001f9754c00f0cbadc03102989319655ff"
@@ -91,25 +110,6 @@
     apollo-server-errors "^2.4.2"
     apollo-server-types "^0.5.1"
     graphql-extensions "^0.12.4"
-    loglevel "^1.6.1"
-    make-fetch-happen "^8.0.0"
-    pretty-format "^26.0.0"
-
-"@apollo/gateway@^0.21.4":
-  version "0.21.4"
-  resolved "https://registry.yarnpkg.com/@apollo/gateway/-/gateway-0.21.4.tgz#8dcec7d94e89ee13a52571d16d477d4869ccc4b2"
-  integrity sha512-e8NpehH+0pQYr2wYeqRyB9i7WaTzWJw16hoI3xVJK1r4DVoSzXqjPyPv00MIBjaCHhq2vlwIe+mupjHC/aMF0g==
-  dependencies:
-    "@apollo/federation" "^0.20.7"
-    "@apollo/query-planner-wasm" "^0.0.9"
-    "@types/node-fetch" "2.5.4"
-    apollo-graphql "^0.6.0"
-    apollo-reporting-protobuf "^0.6.0"
-    apollo-server-caching "^0.5.2"
-    apollo-server-core "^2.19.0"
-    apollo-server-env "^2.4.5"
-    apollo-server-errors "^2.4.2"
-    apollo-server-types "^0.6.1"
     loglevel "^1.6.1"
     make-fetch-happen "^8.0.0"
     pretty-format "^26.0.0"
@@ -600,7 +600,7 @@
     is-absolute "^1.0.0"
     is-negated-glob "^1.0.0"
 
-"@elastic/elasticsearch@^7.10.0":
+"@elastic/elasticsearch@7.10.0":
   version "7.10.0"
   resolved "https://registry.yarnpkg.com/@elastic/elasticsearch/-/elasticsearch-7.10.0.tgz#da105a9c1f14146f9f2cab4e7026cb7949121b8d"
   integrity sha512-vXtMAQf5/DwqeryQgRriMtnFppJNLc/R7/R0D8E+wG5/kGM5i7mg+Hi7TM4NZEuXgtzZ2a/Nf7aR0vLyrxOK/w==
@@ -1039,7 +1039,7 @@
     tslib "2.0.3"
     uuid "8.3.2"
 
-"@nestjs/elasticsearch@^7.1.0":
+"@nestjs/elasticsearch@7.1.0":
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/@nestjs/elasticsearch/-/elasticsearch-7.1.0.tgz#ba77a11d419b9aa542252a83b6490ef8c458fed4"
   integrity sha512-3ixmu9MkTh0DS+LKAKcWHLyf/1DPQTXoy+aVClVI14DJQU208oHR3V0e9klApC+GXCYW+BDhNReh4HRyekjTrw==
@@ -1480,7 +1480,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/graphql-relay@^0.6.0":
+"@types/graphql-relay@0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@types/graphql-relay/-/graphql-relay-0.6.0.tgz#c3dac6a2944fe02372e2b8eee44b7ce474234f6d"
   integrity sha512-/o2GDW22mdggQ9PUSNMbYFJMrCMwwiX8uu1/xS1rbDEdcC6+OVBy9Uz5ePW2zLDzhOznh3Ozm5t09jHqaY8cuw==
@@ -1598,7 +1598,7 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
-"@types/mongodb@^3.6.3":
+"@types/mongodb@3.6.3":
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/@types/mongodb/-/mongodb-3.6.3.tgz#5655af409d9e32d5d5ae9a653abf3e5f9c83eb7a"
   integrity sha512-6YNqGP1hk5bjUFaim+QoFFuI61WjHiHE1BNeB41TA00Xd2K7zG4lcWyLLq/XtIp36uMavvS5hoAUJ+1u/GcX2Q==
@@ -4682,7 +4682,7 @@ graphql-extensions@^0.12.4, graphql-extensions@^0.12.6:
     apollo-server-env "^2.4.5"
     apollo-server-types "^0.6.1"
 
-graphql-relay@^0.6.0:
+graphql-relay@0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/graphql-relay/-/graphql-relay-0.6.0.tgz#18ec36b772cfcb3dbb9bd369c3f8004cf42c7b93"
   integrity sha512-OVDi6C9/qOT542Q3KxZdXja3NrDvqzbihn1B44PH8P/c5s0Q90RyQwT6guhGqXqbYEH6zbeLJWjQqiYvcg2vVw==
@@ -6492,7 +6492,7 @@ mkdirp@^0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-mongodb@^3.6.3:
+mongodb@3.6.3:
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.6.3.tgz#eddaed0cc3598474d7a15f0f2a5b04848489fd05"
   integrity sha512-rOZuR0QkodZiM+UbQE5kDsJykBqWi0CL4Ec2i1nrGrUI3KO11r6Fbxskqmq3JK2NH7aW4dcccBuUujAP0ERl5w==
