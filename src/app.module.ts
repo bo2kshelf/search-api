@@ -6,7 +6,7 @@ import {AuthorsModule} from './authors/authors.module';
 import {BooksModule} from './books/books.module';
 import {ElasticsearchOptionsService} from './elasticsearch/elasticsearch-options.service';
 import elasticsearchConfig from './elasticsearch/elasticsearch.config';
-import {MixedSearchModule} from './mixed-search/mixed.module';
+import {SearchMixedModule} from './search-mixed/search-mixed.module';
 import {SeriesModule} from './series/series.module';
 
 @Module({
@@ -21,7 +21,7 @@ import {SeriesModule} from './series/series.module';
     BooksModule,
     AuthorsModule,
     SeriesModule,
-    MixedSearchModule,
+    SearchMixedModule,
   ],
 })
 export class AppModule {}

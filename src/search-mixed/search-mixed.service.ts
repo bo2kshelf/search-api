@@ -5,7 +5,7 @@ import {RequiredPaginationArgs} from '../paginate/dto/required-pagination.argsty
 import {SearchService} from '../search/search.service';
 
 @Injectable()
-export class MixedSearchService {
+export class SearchMixedService {
   constructor(
     @Inject(elasticsearchConfig.KEY)
     private readonly configService: ConfigType<typeof elasticsearchConfig>,
