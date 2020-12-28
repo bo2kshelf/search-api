@@ -21,8 +21,10 @@ export class MixedSearchService {
         this.configService.seriesIndex,
       ],
       {
-        match: {
-          title: query,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        multi_match: {
+          fields: ['title', 'name'],
+          query,
         },
       },
       paginateArgs,
