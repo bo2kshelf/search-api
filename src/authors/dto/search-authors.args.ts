@@ -4,8 +4,8 @@ import {RequiredPaginationArgs} from '../../paginate/dto/required-pagination.arg
 @InputType()
 @ObjectType('SearchAuthorsResultPageInfoQuery')
 export class SearchAuthorsQuery {
-  @Field({nullable: true})
-  name?: string;
+  @Field({nullable: false})
+  name!: string;
 }
 
 @ArgsType()
