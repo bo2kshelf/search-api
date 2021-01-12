@@ -13,14 +13,12 @@ export class SeriesService {
     private readonly searchService: SearchService,
   ) {}
 
-  async search(
-    {title}: {title?: string},
-    paginateArgs: RequiredPaginationArgs,
-  ) {
-    return this.searchService.paginatedSearch(
-      this.configService.seriesIndex,
-      {match: {title}},
+  async search(query: {title?: string}, paginateArgs: RequiredPaginationArgs) {
+    return this.searchService.paginateSearch({
+      index: this.configService.seriesIndex,
       paginateArgs,
-    );
+      query,
+      body: {query: {match: {...query}}},
+    });
   }
 }
