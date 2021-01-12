@@ -4,8 +4,8 @@ import {RequiredPaginationArgs} from '../../paginate/dto/required-pagination.arg
 @InputType()
 @ObjectType('SearchSeriesResultPageInfoQuery')
 export class SearchSeriesQuery {
-  @Field({nullable: true})
-  title?: string;
+  @Field({nullable: false})
+  title!: string;
 }
 
 @ArgsType()
