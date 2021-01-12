@@ -13,21 +13,24 @@ export class SearchMixedService {
     private readonly searchService: SearchService,
   ) {}
 
-  async search(query: string, paginateArgs: RequiredPaginationArgs) {
-    return this.searchService.paginatedSearch(
-      [
+  async search(query: {query: string}, paginateArgs: RequiredPaginationArgs) {
+    return this.searchService.paginateSearch({
+      index: [
         this.configService.booksIndex,
         this.configService.authorsIndex,
         this.configService.seriesIndex,
       ],
-      {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        multi_match: {
-          fields: ['title', 'name'],
-          query,
+      paginateArgs,
+      query,
+      body: {
+        query: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          multi_match: {
+            fields: ['title', 'name'],
+            query: 'よふかし',
+          },
         },
       },
-      paginateArgs,
-    );
+    });
   }
 }

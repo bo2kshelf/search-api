@@ -31,12 +31,18 @@ export class SearchService {
     }
   }
 
-  async paginatedSearch(
-    index: string | string[],
-    query: any,
-    connArgs: RequiredPaginationArgs,
-  ) {
-    const {size, from} = this.paginateService.getPagingParameters(connArgs);
+  async paginateSearch<Query>({
+    index,
+    body,
+    query,
+    paginateArgs,
+  }: {
+    index: string | string[];
+    paginateArgs: RequiredPaginationArgs;
+    query: Query;
+    body: any;
+  }) {
+    const {size, from} = this.paginateService.getPagingParameters(paginateArgs);
 
     const {
       body: {
@@ -50,10 +56,10 @@ export class SearchService {
       size,
       from,
       _source: ['_id'],
-      body: {query},
+      body,
     });
 
-    const connection = Relay.connectionFromArraySlice<{
+    const {pageInfo, edges} = Relay.connectionFromArraySlice<{
       _id: string;
       _union: string | null;
     }>(
@@ -62,10 +68,17 @@ export class SearchService {
         _union: this.getTypeFromIndex(_index),
         ...rest,
       })),
-      connArgs,
+      paginateArgs,
       {arrayLength: count, sliceStart: from || 0},
     );
 
-    return {...connection, aggregate: {count}};
+    return {
+      edges,
+      pageInfo: {
+        ...pageInfo,
+        query,
+      },
+      aggregate: {count},
+    };
   }
 }

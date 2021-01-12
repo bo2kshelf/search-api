@@ -1,14 +1,15 @@
-import {ArgsType, Field, InputType} from '@nestjs/graphql';
+import {ArgsType, Field, InputType, ObjectType} from '@nestjs/graphql';
 import {RequiredPaginationArgs} from '../../paginate/dto/required-pagination.argstype';
 
 @InputType()
-export class SearchBooksQueryInput {
+@ObjectType('SearchBooksResultPageInfoQuery')
+export class SearchBooksQuery {
   @Field({nullable: true})
   title?: string;
 }
 
 @ArgsType()
 export class SearchBooksArgs extends RequiredPaginationArgs {
-  @Field(() => SearchBooksQueryInput)
-  query!: SearchBooksQueryInput;
+  @Field(() => SearchBooksQuery)
+  query!: SearchBooksQuery;
 }

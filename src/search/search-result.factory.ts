@@ -2,7 +2,11 @@ import {Type} from '@nestjs/common';
 import {Field, Int, ObjectType} from '@nestjs/graphql';
 import * as Relay from 'graphql-relay';
 
-export function SearchResultFactory<T>(classRef: Type<T>, prefix: string): any {
+export function SearchResultFactory<Entity, Query>(
+  entityRef: Type<Entity>,
+  queryRef: Type<Query>,
+  prefix: string,
+): any {
   @ObjectType(`${prefix}ResultAggregate`)
   abstract class Aggregate {
     @Field((_type) => Int)
@@ -22,19 +26,22 @@ export function SearchResultFactory<T>(classRef: Type<T>, prefix: string): any {
 
     @Field((_type) => String, {nullable: true})
     endCursor?: Relay.ConnectionCursor | null;
+
+    @Field(() => queryRef, {nullable: false})
+    query!: Query;
   }
 
   @ObjectType(`${prefix}ResultEdgeType`)
-  abstract class Edge implements Relay.Edge<T> {
-    @Field(() => classRef)
-    node!: T;
+  abstract class Edge implements Relay.Edge<Entity> {
+    @Field(() => entityRef)
+    node!: Entity;
 
     @Field((_type) => String)
     cursor!: Relay.ConnectionCursor;
   }
 
   @ObjectType(`${prefix}Result`, {isAbstract: true})
-  abstract class Connection implements Relay.Connection<T> {
+  abstract class Connection implements Relay.Connection<Entity> {
     @Field(() => Aggregate)
     aggregate!: Aggregate;
 
@@ -42,7 +49,7 @@ export function SearchResultFactory<T>(classRef: Type<T>, prefix: string): any {
     pageInfo!: Relay.PageInfo;
 
     @Field(() => [Edge])
-    edges!: Relay.Edge<T>[];
+    edges!: Relay.Edge<Entity>[];
   }
 
   return Connection;
