@@ -27,7 +27,7 @@ export class SearchMixedService {
           // eslint-disable-next-line @typescript-eslint/naming-convention
           multi_match: {
             fields: ['title', 'name'],
-            query: 'よふかし',
+            query: query.query,
           },
         },
       },
